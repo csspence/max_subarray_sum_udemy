@@ -12,5 +12,19 @@ maxSubarraySum([], 4) // null
 */
 
 const maxSubarraySum = (arr, num) => {
-  
+  let maxSum = 0;
+  let curSum = 0;
+  if(arr.length < num) return null;
+  for(let i = 0; i < num; i++) {
+    maxSum += arr[i];
+  }
+  curSum = maxSum;
+  for(let i = num; i < arr.length; i++) {
+    curSum = curSum - arr[i - num] + arr[i];
+    if(curSum > maxSum) {
+      maxSum = curSum;
+    }
+  }
+
+  return maxSum;
 }
